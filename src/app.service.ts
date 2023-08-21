@@ -6,7 +6,6 @@ import appConfig from './config/app.config';
 export class AppService {
   private readonly logger = new Logger(AppService.name);
 
-  // constructor(private configService: ConfigService) {}
   constructor(
     @Inject(appConfig.KEY)
     private config: ConfigType<typeof appConfig>,
@@ -14,18 +13,14 @@ export class AppService {
 
   getHello(): string {
     this.logger.debug('getHello');
-    // const host = this.configService.get<string>('app.host');
-    // const port = this.configService.get<number>('app.port');
-    // const dbHost = this.configService.get<string>('db.host');
-    // const dbPort = this.configService.get<number>('db.port');
-
     const host = this.config.host;
-    const port = this.config.prot;
-
+    const port = this.config.port;
     this.logger.debug('host : ' + host);
     this.logger.debug('port : ' + port);
-    // this.logger.debug('dbHost : ' + dbHost);
-    // this.logger.debug('dbPort : ' + dbPort);
     return 'Hello World!';
+  }
+
+  getHelloV2(name: string) {
+    return `Hello, ${name}!`;
   }
 }
